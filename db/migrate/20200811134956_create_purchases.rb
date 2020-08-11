@@ -4,8 +4,6 @@ class CreatePurchases < ActiveRecord::Migration[5.2]
       t.float :amount
       t.string :date
       t.integer :budget_id
-
-      t.timestamps null: false
     end
   end
 end
