@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   delete '/sessions' do
      session.clear
      #session[:user_id] = nil
-     redirect '/login'
+     redirect '/'
   end
 
 end

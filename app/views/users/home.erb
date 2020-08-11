@@ -1,5 +1,7 @@
 <% if signed_in? %>
   <h1>Home</h1>
+  
+
   <form action='/sessions' method='POST'>
     <input type=hidden name=_method value=delete>
     <input type=submit value=Logout>

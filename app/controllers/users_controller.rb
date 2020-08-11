@@ -2,23 +2,34 @@ class UsersController < ApplicationController
 
   # GET: /users/new
   get "/signup" do
-    erb :"/users/new"
+    erb :'/users/new'
   end
 
   # POST: /users
   post "/users" do
-    @user = User.new(params)
-    if @user.save!
-      session[:user_id] = @user.id
-      redirect '/users/home'
+    @usernames = User.all.map{|u| u.username}
+    if @usernames.include?(params[:username]) || params[:username] == ""
+      @error = "Invalid username :("
+      erb :'/users/new'
     else
-      @error = @user.errors.full_messages.first
-      erb :"/users/new"
+      @user = User.new(params)
+      if @user.save
+        session[:user_id] = @user.id
+        redirect '/users/home'
+      else
+        @error = @user.errors.full_messages.first
+        erb :"/users/new"
+      end
     end
   end
 
   get '/users/home' do
-    erb :"/users/home"
+    if @user = User.find_by_id(session[:user_id])
+      erb :"/users/home"
+    else
+      @error = "Hm.."
+      erb :index
+    end
   end
 
   # GET: /users/5/edit
