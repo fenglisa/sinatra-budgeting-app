@@ -1,0 +1,11 @@
+<% if signed_in? %>
+  <h1>Home</h1>
+  <form action='/sessions' method='POST'>
+    <input type=hidden name=_method value=delete>
+    <input type=submit value=Logout>
+  </form>
+<%else%>
+  <h1>Hm...</h1>
+  <br>
+  <p><a href=/login>Log In</a> or <a href="/signup">Sign Up</a></p>
+<%end%>

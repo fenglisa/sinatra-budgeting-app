@@ -6,3 +6,4 @@ run ApplicationController
 use PurchasesController
 use BudgetsController
 use UsersController
+use SessionsController

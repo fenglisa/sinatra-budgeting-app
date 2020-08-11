@@ -1,31 +1,23 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/" do
-    erb :"/index"
-  end
-
   # GET: /users/new
   get "/signup" do
     erb :"/users/new"
   end
 
-  get "/login" do
-    erb :"/users/login"
-  end
-
   # POST: /users
   post "/users" do
-    @user = User.find_by(username: params[:username], password: params[:password])
-    if @user
+    @user = User.new(params)
+    if @user.save!
       session[:user_id] = @user.id
-      redirect '/users/:id'
+      redirect '/users/home'
+    else
+      @error = @user.errors.full_messages.first
+      erb :"/users/new"
     end
-    redirect '/login'
   end
 
-  # GET: /users/5
-  get "/users/:id" do
+  get '/users/home' do
     erb :"/users/home"
   end
 
