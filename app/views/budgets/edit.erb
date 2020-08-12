@@ -1,0 +1,17 @@
+<h1>Update Budget</h1>
+
+<h2>Edits for "<%= @budget.name %>"</h2>
+
+  <form action="/budgets/<%= @budget.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Edit the Budget Name:</label>
+    <br>
+    <input type="text" name="name" id="budget_name" value=<%= @budget.name %>></input>
+    <br><br>
+    <br>
+    <label>Edit allocated monthly amount: </label>
+    <br>
+    <input type="number" name="balance" id="budget_balance" required value=<%= @budget.balance %>></input>
+    <br><br>
+    <input type="submit" value="Update Budget">
+  </form>

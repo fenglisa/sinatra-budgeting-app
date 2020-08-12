@@ -1,7 +1,7 @@
 <h1>Your Budgets</h1>
 
 <% @budgets.each do |b| %>
-  <h3><%= b.name %>: <%= b.balance %></h3>
+  <h3><a href='/budgets/<%= b.id %>/edit'><%= b.name %>: <%= b.balance %></a></h3>
 <% end %>
 <br><br>
 <a href=/users/home>Home</a>

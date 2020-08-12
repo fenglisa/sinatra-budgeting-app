@@ -3,6 +3,7 @@ class BudgetsController < ApplicationController
   # GET: /budgets
   get "/budgets" do
     @budgets = current_user.budgets
+    #binding.pry
     erb :"/budgets/index.html"
   end
 
@@ -28,18 +29,26 @@ class BudgetsController < ApplicationController
   end
 
   # GET: /budgets/5
-  get "/budgets/:id" do
-    erb :"/budgets/show.html"
-  end
+  #get "/budgets/:id" do
+  #  erb :"/budgets/show.html"
+  #end
 
   # GET: /budgets/5/edit
   get "/budgets/:id/edit" do
-    erb :"/budgets/edit.html"
+    @budget = current_user.budgets.find_by_id(params[:id])
+    erb :"/budgets/edit"
   end
 
   # PATCH: /budgets/5
   patch "/budgets/:id" do
-    redirect "/budgets/:id"
+    @budget = current_user.budgets.find_by_id(params[:id])
+    params.delete(:_method)
+    if @budget.update!(params)
+      redirect "/budgets"
+    else
+      @error = @budget.errors.full_messages.first
+      erb :"/budgets/edit"
+    end
   end
 
   # DELETE: /budgets/5/delete
