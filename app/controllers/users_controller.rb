@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # POST: /users
   post "/users" do
     @usernames = User.all.map{|u| u.username}
-    if @usernames.include?(params[:username]) || params[:username] == ""
+    if @usernames.include?(params[:username])
       @error = "Invalid username :("
       erb :'/users/new'
     else

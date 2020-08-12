@@ -2,7 +2,7 @@ class BudgetsController < ApplicationController
 
   # GET: /budgets
   get "/budgets" do
-    @budgets = current_user.budgets.all
+    @budgets = current_user.budgets
     erb :"/budgets/index.html"
   end
 
@@ -13,12 +13,17 @@ class BudgetsController < ApplicationController
 
   # POST: /budgets
   post "/budgets" do
-    @budget = current_user.budgets.build(params)
-    if @budget.save
-      redirect "/budgets"
-    else
-      @error = @budget.errors.full_messages.first
+    if params[:name] == ""
+      @error = "Please specify an expense"
       erb :'/budgets/new'
+    else
+      @budget = current_user.budgets.build(params)
+      if @budget.save
+        redirect "/budgets"
+      else
+        @error = @budget.errors.full_messages.first
+        erb :'/budgets/new'
+      end
     end
   end
 
