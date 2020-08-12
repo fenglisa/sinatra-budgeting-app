@@ -2,7 +2,7 @@
 
 <h2>Edits for "<%= @budget.name %>"</h2>
 
-  <form action="/budgets/<%= @budget.id %>" method="POST">
+  <p><form action="/budgets/<%= @budget.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label for="budget_name">Edit the Budget Name:</label>
     <br>
@@ -14,4 +14,7 @@
     <input type="number" name="balance" id="budget_balance" required value=<%= @budget.balance %>></input>
     <br><br>
     <input type="submit" value="Update Budget">
+  </form></p><form method="post" action="/budgets/<%= @budget.id %>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Budget">
   </form>

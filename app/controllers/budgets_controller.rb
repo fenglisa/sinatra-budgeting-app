@@ -52,7 +52,9 @@ class BudgetsController < ApplicationController
   end
 
   # DELETE: /budgets/5/delete
-  delete "/budgets/:id/delete" do
+  delete "/budgets/:id" do
+    @budget = current_user.budgets.find_by_id(params[:id])
+    @budget.destroy
     redirect "/budgets"
   end
 end
