@@ -1,1 +1,11 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Log a New Purchase for <%= @budget.name %></h1>
+
+<form action="/purchases/<%= @budget.id %>" method="POST">
+  <label for="purchase_amount">Purchase amount: </label>
+  <br>
+  <input type="number" name="amount" id="purchase_amount" required></input>
+
+  <br><br>
+
+  <input type="submit" value="Post Purchase">
+</form>

@@ -2,13 +2,14 @@ class BudgetsController < ApplicationController
 
   # GET: /budgets
   get "/budgets" do
-    @budgets = current_user.budgets
+    redirect_if_logged_out
     #binding.pry
-    erb :"/budgets/index.html"
+    erb :"/budgets/index"
   end
 
   # GET: /budgets/new
   get "/budgets/new" do
+    redirect_if_logged_out
     erb :'/budgets/new'
   end
 
@@ -35,6 +36,7 @@ class BudgetsController < ApplicationController
 
   # GET: /budgets/5/edit
   get "/budgets/:id/edit" do
+    redirect_if_logged_out
     @budget = current_user.budgets.find_by_id(params[:id])
     erb :"/budgets/edit"
   end

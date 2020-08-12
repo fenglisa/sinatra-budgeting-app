@@ -6,12 +6,22 @@ class PurchasesController < ApplicationController
   end
 
   # GET: /purchases/new
-  get "/purchases/new" do
+  get "/purchases/:budget_id/new" do
+    @budget = current_user.budgets.find_by_id(params[:budget_id])
     erb :"/purchases/new.html"
   end
 
   # POST: /purchases
-  post "/purchases" do
+  post "/purchases/:budget_id" do
+    @purchase = current_user.purchases.build(
+      amount: params[:amount], budget_id: params[:budget_id])
+      #date:
+    if @purchase.save
+      redirect "/budgets"
+    else
+      @error = @purchase.errors.full_messages.first
+      erb :'/purchases/new'
+    end
     redirect "/purchases"
   end
 

@@ -1,0 +1,12 @@
+<h1>Your Budgets</h1>
+
+<% current_user.budgets.each do |b| %>
+  <h2><a href='/budgets/<%= b.id %>/edit'><%= b.name %>: $<%= b.balance %></a></h2>
+  <% current_user.purchases.each do |p| %>
+    <% if p.budget_id == b.id %>
+    <p>$<a href='/purchases/<%= p.id %>/edit'><%= p.amount %></a></p>
+    <% end %>
+  <% end %>
+  <a href=/purchases/<%= b.id %>/new>Log a Purchase</a>
+  <br><br>
+<% end %>
