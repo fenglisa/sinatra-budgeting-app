@@ -2,17 +2,24 @@ class BudgetsController < ApplicationController
 
   # GET: /budgets
   get "/budgets" do
+    @budgets = current_user.budgets.all
     erb :"/budgets/index.html"
   end
 
   # GET: /budgets/new
   get "/budgets/new" do
-    erb :"/budgets/new.html"
+    erb :'/budgets/new'
   end
 
   # POST: /budgets
   post "/budgets" do
-    redirect "/budgets"
+    @budget = current_user.budgets.build(params)
+    if @budget.save
+      redirect "/budgets"
+    else
+      @error = @budget.errors.full_messages.first
+      erb :'/budgets/new'
+    end
   end
 
   # GET: /budgets/5

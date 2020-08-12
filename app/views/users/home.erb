@@ -1,7 +1,9 @@
 <% if signed_in? %>
   <h1>Home</h1>
-  
-
+  <a href=/budgets>See Your Budgets</a>
+|
+  <a href=/budgets/new>Add a new Budget</a>
+<br><br>
   <form action='/sessions' method='POST'>
     <input type=hidden name=_method value=delete>
     <input type=submit value=Logout>

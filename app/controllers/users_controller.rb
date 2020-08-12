@@ -24,12 +24,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/home' do
-    if @user = User.find_by_id(session[:user_id])
-      erb :"/users/home"
-    else
-      @error = "Hm.."
-      erb :index
-    end
+    redirect_if_logged_out
+    @user = User.find_by_id(session[:user_id])
+    erb :"/users/home"
   end
 
   # GET: /users/5/edit

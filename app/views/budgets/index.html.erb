@@ -1,1 +1,7 @@
-<h1>This is the Model's index page.</h1>
+<h1>Your Budgets</h1>
+
+<% @budgets.each do |b| %>
+  <h3><%= b.name %>: <%= b.balance %></h3>
+<% end %>
+<br><br>
+<a href=/users/home>Home</a>
