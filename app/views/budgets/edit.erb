@@ -4,12 +4,12 @@
 
   <form action="/budgets/<%= @budget.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Edit the Budget Name:</label>
+    <label for="budget_name">Edit the Budget Name:</label>
     <br>
-    <input type="text" name="name" id="budget_name" value=<%= @budget.name %>></input>
+    <input type="text" name="name" id="budget_name" pattern="[^\s][a-zA-Z0-9\s]+" required value=<%= @budget.name %>></input>
     <br><br>
     <br>
-    <label>Edit allocated monthly amount: </label>
+    <label for="budget_balance">Edit allocated monthly amount: </label>
     <br>
     <input type="number" name="balance" id="budget_balance" required value=<%= @budget.balance %>></input>
     <br><br>

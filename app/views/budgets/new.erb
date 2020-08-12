@@ -2,9 +2,9 @@
 
 <form action="/budgets" method="POST">
   <h3>Custom Budget</h3>
-  <label>Budget Name: </label>
+  <label for="budget_name">Budget Name: </label>
   <br>
-  <input type="text" name="name" id="budget_name"></input>
+  <input type="text" name="name" id="budget_name" pattern="[^\s][a-zA-Z0-9\s]+"></input>
   <br><br>
   <h4>or choose from</h4>
   <h3>Common Expenses</h3>
@@ -18,7 +18,7 @@
   <br>
 
 
-  <label>Monthly Amount: </label>
+  <label for="budget_balance">Monthly Amount: </label>
   <br>
   <input type="number" name="balance" id="budget_balance" required></input>
   <br><br>
