@@ -1,14 +1,16 @@
 class PurchasesController < ApplicationController
 
   # GET: /purchases
-  get "/purchases" do
-    erb :"/purchases/index.html"
-  end
+  #get "/purchases" do
+  #  redirect_if_logged_out
+  #  erb :"/purchases/index.html"
+  #end
 
   # GET: /purchases/new
   get "/purchases/:budget_id/new" do
+    redirect_if_logged_out
     @budget = current_user.budgets.find_by_id(params[:budget_id])
-    erb :"/purchases/new.html"
+    erb :"/purchases/new"
   end
 
   # POST: /purchases
@@ -17,7 +19,7 @@ class PurchasesController < ApplicationController
       amount: params[:amount], budget_id: params[:budget_id])
       #date:
     if @purchase.save
-      redirect "/budgets"
+      redirect "/budgets/#{@purchase.budget_id}"
     else
       @error = @purchase.errors.full_messages.first
       erb :'/purchases/new'
@@ -26,22 +28,36 @@ class PurchasesController < ApplicationController
   end
 
   # GET: /purchases/5
-  get "/purchases/:id" do
-    erb :"/purchases/show.html"
-  end
+  #get "/purchases/:id" do
+  #  erb :"/purchases/show.html"
+  #end
 
   # GET: /purchases/5/edit
   get "/purchases/:id/edit" do
-    erb :"/purchases/edit.html"
+    redirect_if_logged_out
+    @purchase = current_user.purchases.find_by_id(params[:id])
+    @budget = Budget.find_by_id(@purchase.budget_id)
+    erb :"/purchases/edit"
   end
 
   # PATCH: /purchases/5
   patch "/purchases/:id" do
-    redirect "/purchases/:id"
+    @purchase = current_user.purchases.find_by_id(params[:id])
+    params.delete(:_method)
+    if @purchase.update!(params)
+      binding.pry
+      redirect "/budgets/#{@purchase.budget_id}"
+    else
+      @error = @purchase.errors.full_messages.first
+      erb :"/purchases/edit"
+    end
   end
 
   # DELETE: /purchases/5/delete
-  delete "/purchases/:id/delete" do
-    redirect "/purchases"
+  delete "/purchases/:id" do
+    @purchase = current_user.purchases.find_by_id(params[:id])
+    @budget = Budget.find_by_id(@purchase.budget_id)
+    @purchase.destroy
+    redirect "/budgets/#{@budget.id}"
   end
 end

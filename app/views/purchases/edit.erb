@@ -1,0 +1,18 @@
+<h1>Edit Purchase for <%= @budget.name %></h1>
+
+<p>
+  <form action="/purchases/<%= @purchase.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+    <label for="purchase_amount">Purchase amount: </label>
+    <br>
+    <input type="number" name="amount" id="purchase_amount" value="<%= @purchase.amount %>"required></input>
+
+    <br><br>
+
+    <input type="submit" value="Update Purchase">
+  </form>
+</p>
+<form method="post" action="/purchases/<%= @purchase.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Purchase">
+</form>

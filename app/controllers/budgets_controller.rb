@@ -30,9 +30,10 @@ class BudgetsController < ApplicationController
   end
 
   # GET: /budgets/5
-  #get "/budgets/:id" do
-  #  erb :"/budgets/show.html"
-  #end
+  get "/budgets/:id" do
+    @budget = current_user.budgets.find_by_id(params[:id])
+    erb :"/budgets/show"
+  end
 
   # GET: /budgets/5/edit
   get "/budgets/:id/edit" do
