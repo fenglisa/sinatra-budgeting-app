@@ -9,6 +9,7 @@
     <p>$<a href='/purchases/<%= p.id %>/edit'><%= p.amount %>_____________<%= p.date %></a></p>
   <% end %>
 <% end %>
-<p>Remainder in <%= @budget.name %> Budget: <b>$<%= remaining_balance %></b></p>
-<a href=/purchases/<%= @budget.id %>/new>Log a Purchase</a>
 <br>
+<h3>Remainder in <%= @budget.name %> Budget: <b>$<%= remaining_balance %></b></h3>
+<br>
+<a href=/purchases/<%= @budget.id %>/new>Log a Purchase</a>
