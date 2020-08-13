@@ -6,12 +6,29 @@
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label for="budget_name">Edit the Budget Name:</label>
     <br>
-    <input type="text" name="name" id="budget_name" pattern="[^\s][a-zA-Z0-9\s]+" required value=<%= @budget.name %>></input>
+    <input type="text" name="name" id="budget_name" pattern="[^\s][a-zA-Z0-9/\s]+" required value=<%= @budget.name %>></input>
     <br><br>
     <br>
     <label for="budget_balance">Edit allocated monthly amount: </label>
     <br>
     <input type="number" name="balance" id="budget_balance" required value=<%= @budget.balance %>></input>
+    <br><br>
+    <label for="month">For the month of: </label>
+    <select name="month" id="month" required>
+      <option value=<%= @budget.month%> selected><%= Date.parse(@budget.month).strftime('%b') %></option>
+      <option value="January">Jan</option>
+      <option value="February">Feb</option>
+      <option value="March">Mar</option>
+      <option value="April">Apr</option>
+      <option value="May">May</option>
+      <option value="June">Jun</option>
+      <option value="July">Jul</option>
+      <option value="August">Aug</option>
+      <option value="September">Sept</option>
+      <option value="October">Oct</option>
+      <option value="November">Nov</option>
+      <option value="December">Dec</option>
+    </select>
     <br><br>
     <input type="submit" value="Update Budget">
   </form></p>

@@ -1,8 +1,17 @@
 <% if signed_in? %>
-  <h1>Home</h1>
   <a href=/budgets>All Your Budgets</a>
 |
   <a href=/budgets/new>Add a new Budget</a>
+<br><br>
+  <h1>Your Budgets left for this month</h1>
+
+  <% current_user.budgets.each do |b| %>
+    <% @budget = b %>
+    <% if Date.parse(@budget.month).mon == Date.today.mon %>
+      <h2><a href='/budgets/<%= @budget.id %>'><%= @budget.name %>: $<%= remaining_balance %></a></h2>
+    <br><br>
+    <% end %>
+  <% end %>
 <br><br>
   <form action='/sessions' method='POST'>
     <input type=hidden name=_method value=delete>

@@ -9,7 +9,7 @@
     <br><br>
     <label for="purchase_date">Purchase Date: </label>
     <br>
-    <input type="date" name="date" id="purchase_date" value="<%= @purchase.date %>"required></input>
+    <input type="date" name="date" id="purchase_date" value="<%= @purchase.date %>" min="<%= Date.parse(@budget.month) %>"required></input>
 
     <br><br>
 

@@ -1,7 +1,29 @@
+<a href=/users/home>Home</a>
+|
+<a href=/budgets>All Your Budgets</a>
+<br><br>
+
 <h1>Start a new Budget</h1>
 
 <form action="/budgets" method="POST">
   <h3>Custom Budget</h3>
+  <label for="month">For the month of: </label>
+  <select name="month" id="month" required>
+    <option value=<%= Date.today.strftime('%B') %> selected>This month</option>
+    <option value="January">Jan</option>
+    <option value="February">Feb</option>
+    <option value="March">Mar</option>
+    <option value="April">Apr</option>
+    <option value="May">May</option>
+    <option value="June">Jun</option>
+    <option value="July">Jul</option>
+    <option value="August">Aug</option>
+    <option value="September">Sept</option>
+    <option value="October">Oct</option>
+    <option value="November">Nov</option>
+    <option value="December">Dec</option>
+  </select>
+  <br><br>
   <label for="budget_name">Budget Name: </label>
   <br>
   <input type="text" name="name" id="budget_name" pattern="[^\s][a-zA-Z0-9\s]+"></input>
