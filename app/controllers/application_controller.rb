@@ -6,6 +6,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "0dee2e0c0cabfcaae23cf7f86c5c66c0b1979f0bfe43fc293062f680b58297c27caebe42afb7a8be5998eb7c0138d12b232a60ccfd17975161f1dd627bef249e"
     set :views, 'app/views'
+    set :public, 'public'
   end
 
   helpers do
@@ -20,6 +21,14 @@ class ApplicationController < Sinatra::Base
     def redirect_if_logged_out
       if !signed_in?
         redirect '/'
+      end
+    end
+
+    def unique_budget?
+      if current_user.budgets.any?{|b| b.name == params[:name] && b.month == params[:month]}
+        false
+      else
+        true
       end
     end
 
@@ -41,7 +50,6 @@ class ApplicationController < Sinatra::Base
       @budget.balance = @budget.balance - purchase_total
       @budget.balance
     end
-
 
   end
 
