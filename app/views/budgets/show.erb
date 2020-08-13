@@ -2,9 +2,10 @@
 
 <% current_user.purchases.each do |p| %>
   <% if p.budget_id == @budget.id %>
-  <p>$<a href='/purchases/<%= p.id %>/edit'><%= p.amount %></a></p>
+    <p>$<a href='/purchases/<%= p.id %>/edit'><%= p.amount %></a></p>
   <% end %>
 <% end %>
+<p>Remainder in <%= @budget.name %> Budget: <b>$<%= remaining_balance %></b></p>
 <a href=/purchases/<%= @budget.id %>/new>Log a Purchase</a>
 <br><br>
 <a href=/budgets>Back to all budgets</a>

@@ -31,6 +31,7 @@ class BudgetsController < ApplicationController
 
   # GET: /budgets/5
   get "/budgets/:id" do
+    redirect_if_logged_out
     @budget = current_user.budgets.find_by_id(params[:id])
     erb :"/budgets/show"
   end

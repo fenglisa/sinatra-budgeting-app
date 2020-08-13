@@ -1,6 +1,7 @@
 <h1>Your Budgets</h1>
 
 <% current_user.budgets.each do |b| %>
-  <h2><a href='/budgets/<%= b.id %>'><%= b.name %>: $<%= b.balance %></a></h2>
+  <% @budget = b %>
+  <h2><a href='/budgets/<%= @budget.id %>'><%= @budget.name %>: $<%= remaining_balance %></a></h2>
   <br><br>
 <% end %>

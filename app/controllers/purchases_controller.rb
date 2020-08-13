@@ -45,7 +45,6 @@ class PurchasesController < ApplicationController
     @purchase = current_user.purchases.find_by_id(params[:id])
     params.delete(:_method)
     if @purchase.update!(params)
-      binding.pry
       redirect "/budgets/#{@purchase.budget_id}"
     else
       @error = @purchase.errors.full_messages.first

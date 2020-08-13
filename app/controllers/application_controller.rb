@@ -22,6 +22,21 @@ class ApplicationController < Sinatra::Base
         redirect '/'
       end
     end
+
+    def purchase_total
+      budget_purchases = []
+      current_user.purchases.each do |p|
+        budget_purchases << p.amount if p.budget_id == @budget.id
+      end
+      budget_purchases.sum
+    end
+
+    def remaining_balance
+      @budget.balance = @budget.balance - purchase_total
+      @budget.balance
+    end
+
+
   end
 
   get "/" do
