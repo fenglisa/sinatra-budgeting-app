@@ -1,1 +1,7 @@
-<h1>This is the Model's index page.</h1>
+<h1>This is the Purchase index page.</h1>
+
+<% current_user.purchases.each do |p| %>
+  <h3><%= Budget.find_by_id(p.budget_id).name %>: <%= Budget.find_by_id(p.budget_id).balance %></h3>
+    <a href='/purchases/<%= p.id %>/edit'>$<%= p.amount %></a>
+  <br><br>
+<% end %>

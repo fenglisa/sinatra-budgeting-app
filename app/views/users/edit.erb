@@ -1,0 +1,14 @@
+<h1>Update your username or password</h1>
+
+<form action="/users/<%= @user.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <p>
+    <label for="username"><%= @user.username %></label>
+    <input id = "username" type="text" name="username">
+  </p>
+  <p>
+    <label for="password"><%= @user.password %></label>
+    <input id = "password" type="text" name="password">
+  </p>
+  <input type="submit" value="Submit">
+</form>

@@ -1,5 +1,4 @@
 require './config/environment'
-require 'date'
 
 
 use Rack::MethodOverride
