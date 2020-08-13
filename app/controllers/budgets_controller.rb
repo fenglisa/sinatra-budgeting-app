@@ -18,6 +18,9 @@ class BudgetsController < ApplicationController
     if params[:name] == ""
       @error = "Please specify an expense"
       erb :'/budgets/new'
+    elsif !unique_budget?
+      @error = "This budget already exists"
+      erb :'/budgets/new'
     else
       @budget = current_user.budgets.build(params)
       if @budget.save
