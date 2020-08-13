@@ -2,8 +2,8 @@
 |
 <a href=/budgets>Back to all budgets</a>
 <br><br>
-<h1><a href='/budgets/<%= @budget.id %>/edit'><%= @budget.name %></a> Purchases</h1>
-
+<h1><a href='/budgets/<%= @budget.id %>/edit'><%= @budget.month %> <%= @budget.name %></a> Purchases</h1>
+<br>
 <% purchases_by_date.each do |p| %>
   <% if p.budget_id == @budget.id %>
     <p>$<a href='/purchases/<%= p.id %>/edit'><%= p.amount %>_____________<%= p.date %></a></p>
