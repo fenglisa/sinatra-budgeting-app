@@ -16,8 +16,10 @@ class PurchasesController < ApplicationController
   # POST: /purchases
   post "/purchases/:budget_id" do
     @purchase = current_user.purchases.build(
-      amount: params[:amount], budget_id: params[:budget_id])
-      #date:
+      amount: params[:amount],
+      budget_id: params[:budget_id],
+      date: Date.today
+    )
     if @purchase.save
       redirect "/budgets/#{@purchase.budget_id}"
     else

@@ -23,6 +23,12 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+    def purchases_by_date
+      current_user.purchases.sort_by do |p|
+        p.date
+      end
+    end
+
     def purchase_total
       budget_purchases = []
       current_user.purchases.each do |p|
