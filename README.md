@@ -1,5 +1,6 @@
 # A Sinatra Budgeting App
-Budget your way!
+### Budget your way! 
+Keeps track of your purchases and your remaining budget through the months.  
 
 ## Installation
 
